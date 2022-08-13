@@ -7,16 +7,39 @@ type Message {
     createdBy: String
 }
 
+type User {
+    username: String,
+    email: String
+    password: String
+    token: String
+}
+
+input RegisterInput {
+    username: String
+    email: String
+    password: String
+}
+
+input LoginInput {
+    email: String
+    password: String
+    
+}
 input MessageInput {
     text: String
     username: String
 }
 
+
+
 type Query {
     message(id: ID!): Message
+    user(id: ID!): User
 }
 
 type Mutation {
     createMessage(messageInput: MessageInput): Message!
+    registerUser(registerInput: RegisterInput): User
+    loginUser(loginInput: LoginInput): User
 }
 `
