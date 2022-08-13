@@ -39,9 +39,9 @@ module.exports = {
         async loginUser(_,{loginInput: { email, password}}) {
             const user = await User.findOne({email})
 
-            if(user && (await bcrypt.compare(password, user.model))) {
+            if(user && (await bcrypt.compare(password, user.password))) {
                 const token = jwt.sign(
-                    {user_id: newUser._id, email},
+                    {user_id: user._id, email},
                     "UNSAFE_STRING",
                     {
                         expiresIn: "2h"
